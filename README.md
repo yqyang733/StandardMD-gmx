@@ -8,7 +8,7 @@ Descriptions:
  - Modelling methods: pdb2gmx  
 
 Path:
- - ./Script/case1/
+ - [Case1](./Script/case1/)
 
 Usage:
  - python Step1_generate_gro_top.py input.pdb  
