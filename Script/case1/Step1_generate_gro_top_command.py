@@ -1,3 +1,4 @@
+import os
 import sys
 
 def ions_mdp():
@@ -26,14 +27,27 @@ def run(input_pdb):
 
     ions_mdp()
 
-    print("Run the following commands, generate gro and top files using gmx.")
-    print("gmx pdb2gmx -f {0} -o build.gro -water tip3p -ignh".format(input_pdb))
-    print("gmx editconf -f build.gro -o newbox.gro -bt cubic -d 0.8")
-    print("gmx solvate -cp newbox.gro -cs spc216.gro -p topol.top -o solv.gro")
-    print("gmx grompp -f ions.mdp -c solv.gro -p topol.top -o ions.tpr -maxwarn 2")
-    print("gmx genion -s ions.tpr -o solv_ions.gro -p topol.top -pname SOD -nname CLA -neutral -conc 0.15")    
-    print("echo q|gmx make_ndx -f solv_ions.gro -o index.ndx")
-    print("Then, you get the gro and top files, you need to visualize the gro file with pymol. And double check it carefully before running the MD!!!")
+    run_sh = open("build.sh", "w")
+    run_sh.write(
+'''gmx pdb2gmx -f {0} -o build.gro -water tip3p -ignh << -EOF
+    2
+-EOF
+
+gmx editconf -f build.gro -o newbox.gro -bt cubic -d 0.8
+gmx solvate -cp newbox.gro -cs spc216.gro -p topol.top -o solv.gro
+gmx grompp -f ions.mdp -c solv.gro -p topol.top -o ions.tpr -maxwarn 2
+gmx genion -s ions.tpr -o solv_ions.gro -p topol.top -pname SOD -nname CLA -neutral -conc 0.15 << -EOF
+    SOL
+-EOF
+
+gmx make_ndx -f solv_ions.gro -o index.ndx << -EOF
+    q
+-EOF
+'''.format(input_pdb)
+    )
+
+    command = "sh build.sh"
+    os.system(command)
 
 def main():
 
