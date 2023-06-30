@@ -26,3 +26,9 @@ Path:
 
 Usage:  
  - sh Step4_Multitask.sh  
+
+## Case3
+Descriptions:   
+ - System: Protein and Ligand; Only one file      
+ - Forcefield: Charmm; Cgenff 
+ - Modelling methods: pdb2gmx  
