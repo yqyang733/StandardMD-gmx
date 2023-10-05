@@ -32,3 +32,12 @@ Descriptions:
  - System: Protein and Ligand; Only one file      
  - Forcefield: Charmm; Cgenff 
  - Modelling methods: pdb2gmx  
+
+## Case4
+Descriptions: Only protein and crystal waters.    
+ - System: Protein and crystal waters; Only one file      
+ - Forcefield: Charmm
+ - Modelling methods: pdb2gmx 
+
+Path:   
+ - [Case4](./Script/case4/)    
