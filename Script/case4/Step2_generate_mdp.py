@@ -26,7 +26,7 @@ def em_mdp():
 ;----------------------------------------------------
 ; RUN CONTROL & MINIMIZATION
 ;----------------------------------------------------
-define                 = 
+define                 = -DFLEXIBLE -DPOSRES_HOH -DPOSRES
 integrator             = steep
 nsteps                 = 500000
 emtol                  = 500
@@ -101,7 +101,7 @@ def nvt_mdp():
 ;----------------------------------------------------
 ; RUN CONTROL
 ;----------------------------------------------------
-define       = -DPOSRES
+define       = -DPOSRES_HOH -DPOSRES
 integrator   = md            ; stochastic leap-frog integrator
 nsteps       = 100000          ; 2 * 5,000 fs = 10 ps
 dt           = 0.002         ; 2 fs
@@ -187,7 +187,7 @@ def npt_mdp():
 ;----------------------------------------------------
 ; RUN CONTROL
 ;----------------------------------------------------
-define       = -DPOSRES
+define       = -DPOSRES_HOH -DPOSRES
 integrator   = md            ; stochastic leap-frog integrator
 nsteps       = 1000000       ; 2 * 50,000 fs = 100 ps
 dt           = 0.002         ; 2 fs
